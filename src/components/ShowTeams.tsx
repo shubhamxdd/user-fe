@@ -11,7 +11,6 @@ import { Button } from "./ui/button";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Team } from "@/types";
-import UserCard from "./UserCard";
 import TeamCarousel from "./TeamCarousel";
 import { ScrollArea } from "./ui/scroll-area";
 
@@ -19,7 +18,9 @@ const ShowTeams = () => {
   const [teams, setTeams] = useState<Team[] | []>([]);
   const fetchTeams = async () => {
     try {
-      const res = await axios.get("http://192.168.1.10:8000/api/team");
+      const res = await axios.get(
+        "https://user-backend-4wri.onrender.com/api/team"
+      );
       setTeams(res.data);
       console.log(res.data);
     } catch (error) {
@@ -49,7 +50,7 @@ const ShowTeams = () => {
         <DialogHeader>
           <DialogTitle className="text-2xl">Teams: </DialogTitle>
           This is a carousel componet swipe to see more {"->"}
-          <ScrollArea className="h-[500px] rounded-md border p-4">
+          <ScrollArea className="h-[500px]">
             <DialogDescription>
               {teams.length > 0 ? (
                 teams.map((team, index) => (

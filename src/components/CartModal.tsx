@@ -13,6 +13,7 @@ import { Button } from "./ui/button";
 import axios from "axios";
 // import { IconType } from "react-icons/lib";
 import { useToast } from "@/components/ui/use-toast";
+import { ScrollArea } from "./ui/scroll-area";
 
 interface CartModalProps {
   icon: React.ReactNode;
@@ -30,7 +31,10 @@ const CartModal = ({ icon }: CartModalProps) => {
 
   const addCartToDatabse = async () => {
     try {
-      const res = await axios.post("http://192.168.1.10:8000/api/team", team);
+      const res = await axios.post(
+        "https://user-backend-4wri.onrender.com/api/team",
+        team
+      );
       console.log(res.data);
       toast({
         title: "Added to DB",
@@ -51,17 +55,19 @@ const CartModal = ({ icon }: CartModalProps) => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-2xl">Your cart:</DialogTitle>
-          <DialogDescription>
-            {team.length > 0 ? (
-              team.map((item) => (
-                <div className="my-5">
-                  <CartUserList user={item} />
-                </div>
-              ))
-            ) : (
-              <p className="text-xl text-center my-6">No items in cart!</p>
-            )}
-          </DialogDescription>
+          <ScrollArea className="h-[500px]">
+            <DialogDescription>
+              {team.length > 0 ? (
+                team.map((item) => (
+                  <div className="my-5">
+                    <CartUserList user={item} />
+                  </div>
+                ))
+              ) : (
+                <p className="text-xl text-center my-6">No items in cart!</p>
+              )}
+            </DialogDescription>
+          </ScrollArea>
           {team.length > 0 && (
             <>
               <Button
