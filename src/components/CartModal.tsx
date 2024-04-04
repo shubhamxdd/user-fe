@@ -10,7 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import CartUserList from "./CartUserList";
 import { clearTeam } from "@/redux/actions";
 import { Button } from "./ui/button";
+import axios from "axios";
 // import { IconType } from "react-icons/lib";
+import { useToast } from "@/components/ui/use-toast";
 
 interface CartModalProps {
   icon: React.ReactNode;
@@ -18,11 +20,27 @@ interface CartModalProps {
 
 const CartModal = ({ icon }: CartModalProps) => {
   const dispatch = useDispatch();
+  const { toast } = useToast();
   const team: [] = useSelector((state) => state.team);
   //   console.log(team);
 
   const handleClearTeam = () => {
     dispatch(clearTeam());
+  };
+
+  const addCartToDatabse = async () => {
+    try {
+      const res = await axios.post("http://192.168.1.10:8000/api/team", team);
+      console.log(res.data);
+      toast({
+        title: "Added to DB",
+      });
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Something went wrong!",
+      });
+    }
   };
 
   return (
@@ -48,7 +66,8 @@ const CartModal = ({ icon }: CartModalProps) => {
             <>
               <Button
                 onClick={() => {
-                  ("");
+                  addCartToDatabse();
+                  handleClearTeam();
                 }}
                 className="mt-4"
               >

@@ -53,9 +53,7 @@ const UserCard = ({ user, onUserSelect, fromCarousel }: UserCardProps) => {
 
   return (
     <Card
-      className={` shadow-md hover:shadow-lg transition-all duration-300 ${
-        fromCarousel ?? "w-full sm:w-[400px]"
-      }`}
+      className={`shadow-md hover:shadow-lg transition-all duration-300 w-full sm:w-[400px]`}
     >
       <CardHeader>
         <div className="grid place-items-center">
@@ -102,22 +100,22 @@ const UserCard = ({ user, onUserSelect, fromCarousel }: UserCardProps) => {
           {onUserSelect && (
             <Button
               variant={"default"}
-              className="w-1/3 font-semibold"
+              className="w-1/2 font-semibold"
               onClick={() => handleAddUserToTeam(user)}
             >
               Add to team
             </Button>
           )}
-          <Button variant={"secondary"} className="w-1/3 gap-2 font-semibold">
+          <Button variant={"secondary"} className="w-1/2 gap-2 font-semibold">
             <MdEdit size={20} /> Edit
           </Button>
-          <Button
+          {/* <Button
             variant={"destructive"}
             onClick={() => console.log("remove user")}
             className="w-1/3 gap-2 font-semibold"
           >
             <MdDeleteOutline size={20} /> Delete
-          </Button>
+          </Button> */}
         </div>
       </CardFooter>
     </Card>

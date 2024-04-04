@@ -9,3 +9,8 @@ export interface User {
   domain: string;
   available: boolean;
 }
+
+export interface Team {
+  _id: string;
+  users: User[];
+}

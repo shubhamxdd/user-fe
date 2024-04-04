@@ -34,16 +34,16 @@ function App() {
   const [debouncedValue] = useDebounce(query, 500);
 
   const fetchUsers = async () => {
-    // const url = `http://192.168.1.10:8000/api/users?page=${currentPage}&limit=21&domain=${
-    //   departmentFilter ? departmentFilter : ""
-    // }&gender=${genderFilter ? genderFilter : ""}&available=${
-    //   availableFilter ? availableFilter : ""
-    // }&search=${debouncedValue}`;
-    const url = `https://user-backend-4wri.onrender.com/api/users?page=${currentPage}&limit=21&domain=${
+    const url = `http://192.168.1.10:8000/api/users?page=${currentPage}&limit=21&domain=${
       departmentFilter ? departmentFilter : ""
     }&gender=${genderFilter ? genderFilter : ""}&available=${
       availableFilter ? availableFilter : ""
     }&search=${debouncedValue}`;
+    // const url = `https://user-backend-4wri.onrender.com/api/users?page=${currentPage}&limit=21&domain=${
+    //   departmentFilter ? departmentFilter : ""
+    // }&gender=${genderFilter ? genderFilter : ""}&available=${
+    //   availableFilter ? availableFilter : ""
+    // }&search=${debouncedValue}`;
 
     const res = await axios.get(url);
     const data = (await res.data) as User[];
@@ -99,7 +99,6 @@ function App() {
         <div className="flex my-5 justify-center flex-wrap items-center">
           <SearchBar query={query} handleQueryChange={handleQueryChange} />
           <div className="flex gap-4 mx-4 max-sm:mt-4">
-            <ShowSelectedUsers selectedUsers={selectedUsers} />
             <FilterDropdown
               title="Department"
               items={domains}
