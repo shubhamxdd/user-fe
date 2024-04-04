@@ -11,6 +11,9 @@ import { Button } from "./ui/button";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Team } from "@/types";
+import UserCard from "./UserCard";
+import TeamCarousel from "./TeamCarousel";
+import { ScrollArea } from "./ui/scroll-area";
 
 const ShowTeams = () => {
   const [teams, setTeams] = useState<Team[] | []>([]);
@@ -37,7 +40,7 @@ const ShowTeams = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="flex  gap-3">
+        <Button className="flex gap-3">
           <FaUsers size={20} />
           Teams
         </Button>
@@ -45,7 +48,23 @@ const ShowTeams = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-2xl">Teams: </DialogTitle>
-          <DialogDescription></DialogDescription>
+          This is a carousel componet swipe to see more {"->"}
+          <ScrollArea className="h-[500px] rounded-md border p-4">
+            <DialogDescription>
+              {teams.length > 0 ? (
+                teams.map((team, index) => (
+                  <div key={index} className="flex flex-col gap-4">
+                    <h3 className="text-xl font-bold text-black">
+                      Team {index + 1}
+                    </h3>
+                    <TeamCarousel teamUsers={team.users} />
+                  </div>
+                ))
+              ) : (
+                <p>No teams available</p>
+              )}
+            </DialogDescription>
+          </ScrollArea>
         </DialogHeader>
       </DialogContent>
     </Dialog>

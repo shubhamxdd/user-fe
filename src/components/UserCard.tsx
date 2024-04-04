@@ -53,7 +53,9 @@ const UserCard = ({ user, onUserSelect, fromCarousel }: UserCardProps) => {
 
   return (
     <Card
-      className={`shadow-md hover:shadow-lg transition-all duration-300 w-full sm:w-[400px]`}
+      className={` shadow-md hover:shadow-lg transition-all duration-300 ${
+        fromCarousel ?? "w-full sm:w-[400px]"
+      }`}
     >
       <CardHeader>
         <div className="grid place-items-center">
