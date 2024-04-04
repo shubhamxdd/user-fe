@@ -53,8 +53,8 @@ const UserCard = ({ user, onUserSelect, fromCarousel }: UserCardProps) => {
 
   return (
     <Card
-      className={` shadow-md hover:shadow-lg transition-all duration-300 ${
-        fromCarousel ? "w-[320px]" : "sm:w-[400px]"
+      className={` shadow-md hover:shadow-lg mb-3 transition-all duration-300 ${
+        fromCarousel ? "w-[320px] h-[400px] " : "sm:w-[400px]"
       }`}
     >
       <CardHeader>
