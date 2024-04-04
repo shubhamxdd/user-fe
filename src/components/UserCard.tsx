@@ -10,6 +10,8 @@ import { User } from "@/types";
 import { Button } from "./ui/button";
 import { MdEdit } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { addToTeam, clearTeam, removeFromTeam } from "@/redux/actions";
 
 interface UserCardProps {
   user: User;
@@ -18,6 +20,7 @@ interface UserCardProps {
 }
 
 const UserCard = ({ user, onUserSelect, fromCarousel }: UserCardProps) => {
+  const dispatch = useDispatch();
   // function resizeImageUrl(url: string, newSize: number) {
   //   const parsedUrl = new URL(url);
   //   parsedUrl.searchParams.set("size", `${newSize}x${newSize}`);
@@ -34,6 +37,19 @@ const UserCard = ({ user, onUserSelect, fromCarousel }: UserCardProps) => {
   //   "bg-pink-300",
   // ];
   // const randomClass = classes[Math.floor(Math.random() * classes.length)];
+
+  const handleAddUserToTeam = (user: User) => {
+    dispatch(addToTeam(user));
+    console.log();
+  };
+
+  const handleRemoveUserFromTeam = (userId: string) => {
+    dispatch(removeFromTeam(userId));
+  };
+
+  const handleClearTeam = () => {
+    dispatch(clearTeam());
+  };
 
   return (
     <Card
@@ -87,7 +103,7 @@ const UserCard = ({ user, onUserSelect, fromCarousel }: UserCardProps) => {
             <Button
               variant={"default"}
               className="w-1/3 font-semibold"
-              onClick={() => onUserSelect(user)}
+              onClick={() => handleAddUserToTeam(user)}
             >
               Add to team
             </Button>

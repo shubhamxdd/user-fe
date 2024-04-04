@@ -2,6 +2,7 @@ import { createStore } from "redux";
 
 const initialState = {
   users: [],
+  team: [],
   query: "",
   genderFilter: "",
   availableFilter: true,
@@ -19,6 +20,15 @@ function rootReducer(state = initialState, action: any) {
       return { ...state, availableFilter: action.payload };
     case "SET_DEPARTMENT_FILTER":
       return { ...state, departmentFilter: action.payload };
+    case "ADD_TO_TEAM":
+      return { ...state, team: [...state.team, action.payload] };
+    case "REMOVE_FROM_TEAM":
+      return {
+        ...state,
+        team: state.team.filter((user) => user.id !== action.payload),
+      };
+    case "CLEAR_TEAM":
+      return { ...state, team: [] };
     default:
       return state;
   }

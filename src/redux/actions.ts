@@ -19,3 +19,15 @@ export function setAvailableFilter(filter: string) {
 export function setDepartmentFilter(filter: string) {
   return { type: "SET_DEPARTMENT_FILTER", payload: filter };
 }
+
+export function addToTeam(user: User) {
+  return { type: "ADD_TO_TEAM", payload: user };
+}
+
+export function removeFromTeam(userId: string) {
+  return { type: "REMOVE_FROM_TEAM", payload: userId };
+}
+
+export function clearTeam() {
+  return { type: "CLEAR_TEAM" };
+}
