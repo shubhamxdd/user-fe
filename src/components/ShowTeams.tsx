@@ -48,14 +48,16 @@ const ShowTeams = () => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-2xl">Teams: </DialogTitle>
-          This is a carousel componet swipe to see more {"->"}
+          <div className="text-left">
+            <DialogTitle className="text-2xl">Teams: </DialogTitle>
+            This is a carousel componet swipe to see more {"->"}
+          </div>
           <ScrollArea className="h-[500px]">
             <DialogDescription>
               {teams.length > 0 ? (
                 teams.map((team, index) => (
                   <div key={index} className="flex flex-col gap-4">
-                    <h3 className="text-xl font-bold text-black">
+                    <h3 className="text-xl font-bold text-black text-left">
                       Team {index + 1}
                     </h3>
                     <TeamCarousel teamUsers={team.users} />

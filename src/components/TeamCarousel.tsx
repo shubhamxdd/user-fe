@@ -7,7 +7,7 @@ import UserCard from "./UserCard";
 const TeamCarousel = ({ teamUsers }: any) => {
   console.log(teamUsers.map((item) => console.log(item.first_name)));
   return (
-    <Carousel>
+    <Carousel className="w-[400px] grid place-items-start mx-auto">
       <CarouselContent>
         {teamUsers.map((item) => (
           <CarouselItem>
