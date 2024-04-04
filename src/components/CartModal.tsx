@@ -35,7 +35,7 @@ const CartModal = ({ icon }: CartModalProps) => {
         "https://user-backend-4wri.onrender.com/api/team",
         team
       );
-      console.log(res.data);
+      // console.log(res.data);
       toast({
         title: "Added to DB",
       });

@@ -22,7 +22,7 @@ const ShowTeams = () => {
         "https://user-backend-4wri.onrender.com/api/team"
       );
       setTeams(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -31,12 +31,6 @@ const ShowTeams = () => {
   useEffect(() => {
     fetchTeams();
   }, []);
-
-  console.log(
-    teams.map((team) => {
-      team.users.map((user) => console.log(user.first_name));
-    })
-  );
 
   return (
     <Dialog>
